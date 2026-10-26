@@ -1,0 +1,1 @@
+const fs=require('fs');for(const f of ['dist/index.html','dist/haberler/index.html','dist/kampanyalar/kdv-10/index.html','dist/yonetim/index.html','dist/style.css'])if(!fs.existsSync(f))throw new Error('Missing '+f);console.log('KBG build smoke test passed');
