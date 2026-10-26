@@ -1,6 +1,8 @@
 media:
   input: media
   output: /media
+  rename: safe
+  extensions: [png, jpg, jpeg, webp, gif]
 content:
   - name: haberler
     label: Haberler
@@ -11,6 +13,10 @@ content:
     view:
       primary: title
       fields: [title, date, category, published]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
     fields:
       - {name: title, label: Başlık, type: string, required: true}
       - {name: date, label: Tarih, type: date}
@@ -18,7 +24,7 @@ content:
       - {name: summary, label: Özet, type: text}
       - {name: source_url, label: Kaynak bağlantısı, type: string}
       - {name: image, label: Kapak, type: image}
-      - {name: published, label: Yayımla, type: boolean}
+      - {name: published, label: Yayımla, type: boolean, description: Kapalıysa taslak olarak kaydedilir ve sitede görünmez.}
       - {name: featured, label: Öne çıkar, type: boolean}
       - {name: body, label: Haber, type: rich-text}
   - name: kampanyalar
@@ -30,6 +36,10 @@ content:
     view:
       primary: title
       fields: [title, stage, published]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
     fields:
       - {name: title, label: Başlık, type: string, required: true}
       - {name: date, label: Başlangıç tarihi, type: date}
@@ -37,7 +47,7 @@ content:
       - {name: stage, label: Durum, type: string}
       - {name: requestRate, label: KDV talebi, type: number}
       - {name: official_url, label: Resmî bağlantı, type: string}
-      - {name: published, label: Yayımla, type: boolean}
+      - {name: published, label: Yayımla, type: boolean, description: Kapalıysa taslak olarak kaydedilir ve sitede görünmez.}
       - {name: body, label: Kampanya metni, type: rich-text}
   - name: sponsorlar
     label: Sponsor ve reklamlar
@@ -48,6 +58,7 @@ content:
     view:
       primary: title
       fields: [title, company, active]
+      sort: [title]
     fields:
       - {name: title, label: Reklam adı, type: string}
       - {name: company, label: Firma, type: string}
@@ -56,7 +67,7 @@ content:
       - {name: target_url, label: Hedef bağlantı, type: string}
       - {name: start_date, label: Başlangıç, type: date}
       - {name: end_date, label: Bitiş, type: date}
-      - {name: active, label: Aktif, type: boolean}
+      - {name: active, label: Aktif, type: boolean, description: Reklamı yayında göstermek için açın. Tarih sınırları ayrıca uygulanır.}
   - name: ayarlar
     label: Site ayarları
     type: file
