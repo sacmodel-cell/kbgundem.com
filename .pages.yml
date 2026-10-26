@@ -1,0 +1,76 @@
+media:
+  input: media
+  output: /media
+content:
+  - name: haberler
+    label: Haberler
+    type: collection
+    path: content/haberler
+    format: json
+    filename: "{title}.json"
+    view:
+      primary: title
+      fields: [title, date, category, published]
+    fields:
+      - {name: title, label: Başlık, type: string, required: true}
+      - {name: date, label: Tarih, type: date}
+      - {name: category, label: Kategori, type: string}
+      - {name: summary, label: Özet, type: text}
+      - {name: source_url, label: Kaynak bağlantısı, type: string}
+      - {name: image, label: Kapak, type: image}
+      - {name: published, label: Yayımla, type: boolean}
+      - {name: featured, label: Öne çıkar, type: boolean}
+      - {name: body, label: Haber, type: rich-text}
+  - name: kampanyalar
+    label: Kampanyalar
+    type: collection
+    path: content/kampanyalar
+    format: json
+    filename: "{title}.json"
+    view:
+      primary: title
+      fields: [title, stage, published]
+    fields:
+      - {name: title, label: Başlık, type: string, required: true}
+      - {name: date, label: Başlangıç tarihi, type: date}
+      - {name: summary, label: Açıklama, type: text}
+      - {name: stage, label: Durum, type: string}
+      - {name: requestRate, label: KDV talebi, type: number}
+      - {name: official_url, label: Resmî bağlantı, type: string}
+      - {name: published, label: Yayımla, type: boolean}
+      - {name: body, label: Kampanya metni, type: rich-text}
+  - name: sponsorlar
+    label: Sponsor ve reklamlar
+    type: collection
+    path: content/sponsorlar
+    format: json
+    filename: "{title}.json"
+    view:
+      primary: title
+      fields: [title, company, active]
+    fields:
+      - {name: title, label: Reklam adı, type: string}
+      - {name: company, label: Firma, type: string}
+      - {name: description, label: Tanıtım metni, type: text}
+      - {name: image, label: Reklam görseli, type: image}
+      - {name: target_url, label: Hedef bağlantı, type: string}
+      - {name: start_date, label: Başlangıç, type: date}
+      - {name: end_date, label: Bitiş, type: date}
+      - {name: active, label: Aktif, type: boolean}
+  - name: ayarlar
+    label: Site ayarları
+    type: file
+    path: content/ayarlar.json
+    format: json
+    fields:
+      - {name: siteName, label: Site adı, type: string}
+      - {name: tagline, label: Slogan, type: string}
+      - {name: domain, label: Alan adı, type: string}
+      - {name: founderName, label: Kurucu, type: string}
+      - {name: tbmmStatus, label: TBMM durumu, type: string}
+      - {name: officialPetitionURL, label: TBMM resmî bağlantısı, type: string}
+      - {name: cimerStatus, label: CİMER durumu, type: string}
+      - {name: contactEmail, label: İletişim e-posta, type: string}
+      - {name: instagramURL, label: Instagram, type: string}
+      - {name: xURL, label: X, type: string}
+      - {name: adSalesOpen, label: Reklam satışı açık, type: boolean}
