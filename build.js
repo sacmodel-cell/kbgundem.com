@@ -24,3 +24,5 @@ fs.writeFileSync(out+'/robots.txt','User-agent: *\nAllow: /\nDisallow: /yonetim/
 fs.mkdirSync(out+'/media',{recursive:true});
 fs.writeFileSync(out+'/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+esc(cfg.domain)+'/</loc></url></urlset>');
 console.log('Created '+news.length+' news, '+campaigns.length+' campaigns, '+ads.length+' ads');
+
+fs.writeFileSync(out+'/404.html','<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Sayfa bulunamadı | KBG Gündem</title><link rel="stylesheet" href="/style.css"></head><body><header><div class="wrap"><a class="brand" href="/">KBG GÜNDEM</a></div></header><main><article class="article"><h1>Sayfa bulunamadı</h1><p>Aradığınız içerik yayımlanmamış, kaldırılmış veya adresi değişmiş olabilir.</p><p><a class="button" href="/">Ana sayfaya dön</a></p></article></main></body></html>');
