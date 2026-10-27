@@ -1,7 +1,7 @@
 const fs=require('fs'),path=require('path');
 const out='dist';fs.rmSync(out,{recursive:true,force:true});fs.mkdirSync(out,{recursive:true});if(fs.existsSync('media'))fs.cpSync('media',path.join(out,'media'),{recursive:true});
 const get=p=>JSON.parse(fs.readFileSync(p,'utf8')),items=p=>fs.readdirSync(p).filter(x=>x.endsWith('.json')).map(x=>({slug:x.replace(/\.json$/,''),...get(p+'/'+x)}));
-const cfg=get('content/ayarlar.json'),news=items('content/haberler').filter(x=>x.published===true),campaigns=items('content/kampanyalar').filter(x=>x.published===true),today=new Date().toISOString().slice(0,10),ads=items('content/sponsorlar').filter(x=>x.active===true&&x.company&&!/ornek|örnek/i.test(x.slug)&&(!x.start_date||x.start_date<=today)&&(!x.end_date||x.end_date>=today));
+const cfg=get('content/ayarlar.json'),news=items('content/haberler').filter(x=>x.published===true).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))),campaigns=items('content/kampanyalar').filter(x=>x.published===true),today=new Date().toISOString().slice(0,10),ads=items('content/sponsorlar').filter(x=>x.active===true&&x.company&&!/ornek|örnek/i.test(x.slug)&&(!x.start_date||x.start_date<=today)&&(!x.end_date||x.end_date>=today));
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safe=s=>/^https:\/\//.test(s||'')?esc(s):'';
 const imageURL=s=>/^(\/media\/[a-zA-Z0-9_\/.%-]+|https:\/\/[^\s"'<>]+)$/.test(String(s||''))?esc(s):'';
